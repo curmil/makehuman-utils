@@ -37,27 +37,28 @@ Access from the File > Import menu.
 """
 
 bl_info = {
-    'name': 'Export: MakeHuman Rigging (.mhskel)',
-    'author': 'Manuel Bastioni',
-    'version': (1,0,2),
-    "blender": (2,6,0),
-    'location': "File > Export > MakeHuman Rigging (.mhskel) and File > Import > MakeHuman Rigging (.mhskel)",
-    'description': 'Export skeleton, groups and weights as mhskel file',
-    'warning': '',
-    'wiki_url': '',
-    'category': 'MakeHuman'}
+    "name": "Export: MakeHuman Rigging (.mhskel)",
+    "author": "Manuel Bastioni",
+    "version": (1,0,3),
+    "blender": (2, 80, 0),
+    "location": "File > Export > MakeHuman Rigging (.mhskel) and File > Import > MakeHuman Rigging (.mhskel)",
+    "description": "Export skeleton, groups and weights as mhskel file",
+    "warning": "",
+    "wiki_url": (""),
+    "tracker_url": "",
+    "support": "COMMUNITY",
+    "category": "Import-Export"}
 
-import bpy 
+import bpy
+
 from . import shared_mh_rigging
 from . import export_mh_rigging
 from . import import_mh_rigging
 
-            
 def register():
     shared_mh_rigging.register()
     export_mh_rigging.register()
     import_mh_rigging.register()
-
 
 def unregister():
     shared_mh_rigging.unregister()
@@ -67,4 +68,3 @@ def unregister():
 
 if __name__ == "__main__":
     register()
-

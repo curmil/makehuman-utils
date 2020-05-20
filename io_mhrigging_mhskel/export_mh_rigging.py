@@ -390,7 +390,7 @@ def writeRiggingFile(context, filepath):
     # This is very important, because the armature
     # must be active in order to turn in edit mode.
     
-    bpy.context.scene.objects.active = armature
+    bpy.context.view_layer.objects.active = armature
 
     bones, rot_planes = getBonesData(basemesh, armature)
     joints = getJointsData(basemesh, armature)
@@ -428,7 +428,7 @@ def writeRiggingFile(context, filepath):
     outfile.close()
 
     #Restore the initial active object
-    bpy.context.scene.objects.active = basemesh
+    bpy.context.view_layer.objects.active = basemesh
     return {'FINISHED'}
 
 """
@@ -444,7 +444,7 @@ from bpy.props import StringProperty, BoolProperty, EnumProperty
 from bpy.types import Operator
 
 def menu_func_export(self, context):
-    self.layout.operator(ExportMHRigging.bl_idname, text="MakeHuman rigging (.mhskel)")    
+    self.layout.operator(ExportMHRigging.bl_idname, text="Makehuman Skeleton (.mhskel)")
 
 class ExportMHRigging(Operator, ExportHelper):
     """This appears in the tooltip of the operator and in the generated docs"""
@@ -454,21 +454,21 @@ class ExportMHRigging(Operator, ExportHelper):
     # ImportHelper mixin class uses this
     filename_ext = ".mhskel"
 
-    filter_glob = StringProperty(
+    filter_glob: StringProperty(
             default="*.mhskel",
             options={'HIDDEN'},
             )
 
-    def execute(self, context):        
-        return writeRiggingFile(context, self.filepath)       
+    def execute(self, context):
+        return writeRiggingFile(context, self.filepath)
 
 def register():
     bpy.utils.register_class(ExportMHRigging)
-    bpy.types.INFO_MT_file_export.append(menu_func_export)
+    bpy.types.TOPBAR_MT_file_export.append(menu_func_export)
 
 def unregister():
     bpy.utils.unregister_class(ExportMHRigging)
-    bpy.types.INFO_MT_file_export.remove(menu_func_export)
+    bpy.types.TOPBAR_MT_file_export.remove(menu_func_export)
 
 
 if __name__ == "__main__":
