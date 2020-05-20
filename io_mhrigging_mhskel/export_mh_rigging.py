@@ -444,7 +444,7 @@ from bpy.props import StringProperty, BoolProperty, EnumProperty
 from bpy.types import Operator
 
 def menu_func_export(self, context):
-    self.layout.operator(ExportMHRigging.bl_idname, text="Makehuman Skeleton (.mhskel)")
+    self.layout.operator(ExportMHRigging.bl_idname, text="Makehuman rigging (.mhskel)")
 
 class ExportMHRigging(Operator, ExportHelper):
     """This appears in the tooltip of the operator and in the generated docs"""
